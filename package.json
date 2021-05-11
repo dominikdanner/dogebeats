@@ -1,0 +1,33 @@
+{
+  "name": "klassenbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominikdanner/frau-fuerst.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dominikdanner/frau-fuerst/issues"
+  },
+  "homepage": "https://github.com/dominikdanner/frau-fuerst#readme",
+  "dependencies": {
+    "@types/yt-search": "^2.3.0",
+    "discord.js": "^12.5.3",
+    "ffmpeg-static": "^4.3.0",
+    "node-opus": "^0.3.3",
+    "opus": "*",
+    "yt-search": "^2.8.0",
+    "ytdl": "^1.4.1",
+    "ytdl-core": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^15.0.2"
+  }
+}
