@@ -2,7 +2,7 @@ import { Collection } from 'discord.js'
 import { bot } from '../config/config'
 const VoiceCollection = new Collection()
 
-export const DynamicChannel = (client: any) => {
+export const TempChannel = (client: any) => {
     client.on('voiceStateUpdate', async (oldState: any, newState: any) => {
         const user = await client.users.fetch(newState.id)
         const member = newState.guild.member(user)
