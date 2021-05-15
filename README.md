@@ -35,8 +35,6 @@ You don't have to host this bot on your own. [Try it out](https://discord.com/oa
 
 - Get a token string for your bot from by registering your bot here: [Discord Developer Portal](https://discordapp.com/developers)
     - You should be able to find options to invite your bot to a channel here as well
-- Open `src/config/config.ts` and replace the content for the quotes ```"<BOT_TOKEN>"``` with your bot token.
-    - In config you can add other settings, to see an example of the settings open `./src/bot/config.ts` and look at `DefaultBotConfig` and `BotConfig` for eamples
 
 ## Running the Application
 
