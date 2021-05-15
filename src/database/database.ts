@@ -1,7 +1,7 @@
 import mongoose, { Document } from 'mongoose'
 import color from 'colors'
 import { mongo } from '../config/config'
-import { emitter } from '../voice/voice-emitter';
+import { emitter } from '../voice/event/voice-emitter';
 import { HistorySchema } from './model/History';
 import { Message } from 'discord.js';
 import { errorEmbed } from '../style/error-embed';
@@ -13,7 +13,7 @@ export const DatabaseLogger = ()  => {
         .then(_ => console.log(`MognoDB:   ${ color.green('CONNECTED') }`))
         .catch(_ => console.log(`MongoDB:   ${ color.red('NOT CONNECTED') }`));
         
-        emitter.on('history-add', async({ title, url, thumbnail }) => {
+        emitter.on('queue-add', async({ title, url, thumbnail }) => {
             const History: Document  = new HistorySchema({ 
                 yt_url: url,
                 thumbnail_url: thumbnail,
