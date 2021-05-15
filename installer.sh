@@ -3,7 +3,6 @@
 
 # Software Requirerments:
 #   * nodeJS 14.x
-#   * typescript Compiler
 echo "Installing all Libaries and Dependencies needed"
 echo $'Node Version 14.x required \n'
 
