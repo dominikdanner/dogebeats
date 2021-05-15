@@ -6,7 +6,7 @@
     - Node Version 14.x or greater
     - Typescript Compiler
 
-![Image](https://imgur.com/B2xLVgU.png)
+![Image](https://i.imgur.com/hEZkob5.png)
 
 ## Description
 
