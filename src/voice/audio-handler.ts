@@ -1,6 +1,6 @@
 import ytdl, { validateURL, videoInfo } from 'ytdl-core';
 import color from 'colors'
-import { emitter } from './voice-emitter'
+import { emitter } from './event/voice-emitter'
 import { bot } from '../config/config'
 import { ISong } from '../interface/Song'
 import { search } from 'yt-search'
@@ -123,13 +123,12 @@ export class MusicPlayer extends AudioHandler{
                 }
                 //Sending Controll Embed and assigne Variable)
                 this.StateManager().then(_ => console.log(`Statemanager: ${color.green('ACTIVE')}`))
-                if(HistoryAdd) emitter.emit('history-add', this.currentSong, this.client)
+                if(HistoryAdd) emitter.emit('queue-add', this.currentSong, this.client)
                 this.controllerEmbed = await this.ControllEmbed(msg)
                 console.timeEnd('Queue-Stream')
             }).catch((err: Error) => console.log(err))
             //Listening for events and updating State Variables
         })
-
         /**
          * Listening for all events to controll the Audiostream
          * @param Message from Discord.Message Class
