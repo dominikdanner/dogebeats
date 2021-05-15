@@ -1,4 +1,5 @@
-# Opensoucrce Music Bot » Dogebeats [Image](https://i.imgur.com/hf9Zce9.png)
+# Opensoucrce Music Bot » Dogebeats 
+![Image](https://i.imgur.com/hEZkob5.png)
 - Name is inspired by [DogeHouse](https://dogehouse.tv/dash) a Voiceplattform that is going to the moon🚀
 - You can can use `/play` to play Youtube Links or write out the name of the song.
 - Thanks to MongoDB you can add, edit, manage and play your own Playlists.
@@ -6,7 +7,7 @@
     - Node Version 14.x or greater
     - Typescript Compiler
 
-![Image](https://i.imgur.com/hEZkob5.png)
+![Image](https://i.imgur.com/hf9Zce9.png)
 
 ## Description
 
