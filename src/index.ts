@@ -1,27 +1,19 @@
-import color from 'colors'
 import { Client } from 'discord.js'
 import { bot } from './config/config'
-import { Clear } from './command/command'
-import { TempChannel } from './voice/temp-channel'
-import { MusicPlayer } from './voice/audio-handler'
-import { DatabaseLogger } from './database/database'
+import { Clear } from './command/clear'
+import { AudioHandler } from './voice/audio'
 const client = new Client()
-const audio = new MusicPlayer(client)
+const audioHandler = new AudioHandler(client)
 
-client.on('ready', async() => {
-    console.log(`--------- ${color.grey('General Info')} ---------`)
-    console.log(`Login:     ${ color.green(client.user!.tag) }`)
-    await DatabaseLogger();
+client.on('ready', () => {
+    console.log("Logged in")
     client.user?.setPresence(bot.presence)
     
     //Clear Command
     Clear(client, bot.commands.clear.name)
-    //Creates Dynamic or Temp Channel
-    TempChannel(client)
+
     //Audio-Handler for the music
-    audio.MusicPlayer()
+    audioHandler.start()
 })
-
-
 
 client.login(bot.BOT_TOKEN)

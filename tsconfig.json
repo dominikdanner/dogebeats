@@ -16,7 +16,6 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
-    "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": false,
@@ -26,12 +25,5 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "baseUrl": "."
-  },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "./src/**/*.tsx",
-    "./src/**/*.ts"
-  ]
+  }
 }
