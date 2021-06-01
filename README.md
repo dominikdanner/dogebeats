@@ -17,7 +17,6 @@ You don't have to host this bot on your own. [Try it out](https://discord.com/oa
 
 - `discord.js` this is the core API of Discord for Javascript/TS.
 - `ytdl-core` a Javascript/TS libary for youtube fetching audio/video.
-- `yt-search` a Javascript/TS libary for fetching youtube data.
 - `typescript` enables types for Javascript and uses a compiler for execution
 
 ## Installation
