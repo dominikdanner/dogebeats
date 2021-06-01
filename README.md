@@ -21,7 +21,7 @@ You don't have to host this bot on your own. [Try it out](https://discord.com/oa
 
 ## Installation
 
-- Install node latest stable release, this was built with node v12.16.1
+- Install node latest stable release, this was built with node v14.16.1
 - For windows run `npm install --global --production windows-build-tools`
     - Run `npm config set python python2.7`
     - Run `npm install node-gyp -g`
