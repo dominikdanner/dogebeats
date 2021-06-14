@@ -3,7 +3,7 @@
 - You can can use `/play` to play Youtube Links or write out the name of the song.
 - Thanks to MongoDB you can add, edit, manage and play your own Playlists.
 - **Requirements:**
-    - Node Version 14.x or greater
+    - Node Version 15.x or greater
     - Typescript Compiler
 
 ![Image](https://i.imgur.com/hEZkob5.png)
