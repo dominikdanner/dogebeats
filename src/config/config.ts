@@ -46,7 +46,7 @@ export const bot: {
         }
     },
     //Bot Token
-    BOT_TOKEN: 'ODQwMjI0NTQzMDU4NDI3OTE0.YJVGFQ.WNuvVOGc7pMxUJGKCpceKNH1Bbg',
+    BOT_TOKEN: ''
 }
 
 export const colors = {

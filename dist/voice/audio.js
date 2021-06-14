@@ -97,8 +97,11 @@ var AudioHandler = /** @class */ (function (_super) {
                                             Queue.add(AudioStream);
                                             if (!this.isPlaying) {
                                                 this.Dispatcher = this.channelConnection.play(Queue.get(0));
-                                                this.Dispatcher.once('finish', function () { _this.isPlaying = false; console.log("Finish"); });
                                                 this.isPlaying = true;
+                                                this.Dispatcher.once('finish', function () {
+                                                    _this.isPlaying = false;
+                                                    console.log("Finish");
+                                                });
                                             }
                                             return [2 /*return*/];
                                         });
@@ -116,8 +119,11 @@ var AudioHandler = /** @class */ (function (_super) {
                                 (_a = this.Dispatcher) === null || _a === void 0 ? void 0 : _a.emit('finish');
                                 Queue.remove(0);
                                 this.Dispatcher = this.channelConnection.play(Queue.get(0));
-                                this.Dispatcher.once('finish', function () { _this.isPlaying = false; console.log("Finish"); });
-                                return [2 /*return*/, this.isPlaying = true];
+                                this.isPlaying = true;
+                                this.Dispatcher.once('finish', function () {
+                                    _this.isPlaying = false;
+                                    console.log("Finish");
+                                });
                             }
                             // Command for Stopping Dispatcher
                             else if (msg.content.startsWith(config_1.bot.PREFIX + "stop")) {

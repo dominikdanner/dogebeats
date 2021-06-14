@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "watch": "tsc -watch src/index.ts --outDir dist/index.js --esModuleInterop",
+    "watch": "tsc -watch src/index.ts --outDir dist --esModuleInterop",
     "dev": "nodemon dist/index.js"
   },
   "repository": {
