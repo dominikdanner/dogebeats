@@ -68,69 +68,67 @@ var AudioHandler = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.SongState = 0;
         _this.start = function () {
-            /**
-             * All Textbased Commands
-             */
+            // Message event
             _this.client.on('message', function (msg) { return __awaiter(_this, void 0, void 0, function () {
                 var _this = this;
-                var _a;
-                return __generator(this, function (_b) {
-                    switch (_b.label) {
+                var _a, _b, _c;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
                         case 0:
                             if (!msg.content.startsWith("" + config_1.bot.PREFIX + config_1.bot.commands.play.name)) return [3 /*break*/, 2];
-                            return [4 /*yield*/, youtube_1.getAudio(string_1.getArgsString(msg, "" + config_1.bot.PREFIX + config_1.bot.commands.play.name), function (_err, AudioStream, Song) {
+                            // Fetching Audiofile
+                            return [4 /*yield*/, youtube_1.getAudio(string_1.getArgsString(msg.content), function (err, AudioStream, Song) {
+                                    // Catching Errors
+                                    if (err)
+                                        throw err;
                                     _this.currentSong = Song;
-                                    msg.react(config_1.bot.interface["true"]);
-                                    if (_err)
-                                        throw _err;
-                                    //Dynamic Varibales
+                                    // Current channel of a User
                                     _this.Channel = msg.member.voice.channel;
+                                    // React on message
+                                    msg.react(config_1.bot.interface["true"]);
+                                    // When User isn't in a channel
                                     if (!_this.Channel)
                                         return msg.channel.send(error_embed_1.errorEmbed('You are not in a Channel.'));
                                     _this.Channel.join().then(function (connection) { return __awaiter(_this, void 0, void 0, function () {
-                                        var _a;
-                                        return __generator(this, function (_b) {
-                                            switch (_b.label) {
-                                                case 0:
-                                                    this.channelConnection = connection;
-                                                    if (!this.isPlaying) return [3 /*break*/, 1];
-                                                    Queue.add(AudioStream);
-                                                    return [2 /*return*/, console.log("All Songs: " + Queue.getLenght())];
-                                                case 1:
-                                                    //Plays the Stream in Discord Channel
-                                                    Queue.add(AudioStream);
-                                                    _a = this;
-                                                    return [4 /*yield*/, connection.play(AudioStream)];
-                                                case 2:
-                                                    _a.Dispatcher = _b.sent();
-                                                    this.isPlaying = true;
-                                                    return [2 /*return*/, console.log("Added Lenght: " + Queue.getLenght())];
+                                        var _this = this;
+                                        return __generator(this, function (_a) {
+                                            this.channelConnection = connection;
+                                            // Adding Song to internal.Readable Array
+                                            Queue.add(AudioStream);
+                                            if (!this.isPlaying) {
+                                                this.Dispatcher = this.channelConnection.play(Queue.get(0));
+                                                this.Dispatcher.once('finish', function () { _this.isPlaying = false; console.log("Finish"); });
+                                                this.isPlaying = true;
                                             }
+                                            return [2 /*return*/];
                                         });
-                                    }); });
+                                    }); })["catch"](function (err) { return console.log(err); });
                                 })];
                         case 1:
-                            _b.sent();
+                            // Fetching Audiofile
+                            _d.sent();
                             return [3 /*break*/, 3];
                         case 2:
                             if (msg.content.startsWith(config_1.bot.PREFIX + "skip")) {
-                                if (Queue.getLenght() == 1)
+                                // Checks if there is a song skipable
+                                if (Queue.getLenght() <= 1)
                                     return [2 /*return*/, msg.channel.send(error_embed_1.errorEmbed('No Songs to skip'))];
-                                else
-                                    Queue.remove(0);
-                                console.log("Skiped Lenght: " + Queue.getLenght());
+                                (_a = this.Dispatcher) === null || _a === void 0 ? void 0 : _a.emit('finish');
+                                Queue.remove(0);
                                 this.Dispatcher = this.channelConnection.play(Queue.get(0));
+                                this.Dispatcher.once('finish', function () { _this.isPlaying = false; console.log("Finish"); });
+                                return [2 /*return*/, this.isPlaying = true];
                             }
                             // Command for Stopping Dispatcher
                             else if (msg.content.startsWith(config_1.bot.PREFIX + "stop")) {
                                 if (this.isPlaying) {
-                                    (_a = this.Dispatcher) === null || _a === void 0 ? void 0 : _a.pause();
-                                    Queue.getAll().splice(0, Queue.getLenght());
-                                    this.isPlaying = false;
-                                    this.Dispatcher = null;
+                                    Queue.clear();
+                                    (_b = this.Dispatcher) === null || _b === void 0 ? void 0 : _b.pause();
+                                    (_c = this.Dispatcher) === null || _c === void 0 ? void 0 : _c.emit('finish');
+                                    return [2 /*return*/, this.Dispatcher = null];
                                 }
                             }
-                            _b.label = 3;
+                            _d.label = 3;
                         case 3: return [2 /*return*/];
                     }
                 });

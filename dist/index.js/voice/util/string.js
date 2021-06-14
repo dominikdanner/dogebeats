@@ -4,9 +4,10 @@ exports.getArgsString = exports.getArgs = void 0;
 /**
  * @returns String
  */
-function getArgsString(msg, remove) {
-    var content = msg.content;
-    return content.replace(remove, '');
+function getArgsString(content) {
+    var arr = content.split(' ');
+    arr.shift();
+    return arr.toString().replace(/,/g, ' ');
 }
 exports.getArgsString = getArgsString;
 /**

@@ -3,10 +3,12 @@ import { Message } from "discord.js";
 /**
  * @returns String
  */
-function getArgsString(msg: Message, remove: string) {
-    const { content } = msg
-    return content.replace(remove, '')
+function getArgsString(content: string): string {
+    const arr = content.split(' ')
+    arr.shift();
+    return arr.toString().replace (/,/g, ' ');
 }
+
 /**
  * @returns Array
  */

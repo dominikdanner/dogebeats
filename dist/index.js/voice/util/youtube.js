@@ -42,7 +42,7 @@ exports.__esModule = true;
 exports.getAudio = exports.getVideoData = void 0;
 var axios_1 = __importDefault(require("axios"));
 var ytdl_core_1 = __importDefault(require("ytdl-core"));
-var YoutubeToken = "AIzaSyAmtC8YoqPld7w10zrmOCfHtOOGWD1Midw";
+var YoutubeToken = "AIzaSyCKq4UQP9iheNAgb4cZRO4AhF4XcUMpYI8";
 /**
  * Calls the Youtube Data API and fetches data for the specific element
  * @param query
@@ -67,44 +67,52 @@ function getVideoData(query, callback) {
 exports.getVideoData = getVideoData;
 /**
  * Returns Audio Stream as an internal.Readable
- * @param data : Could be Youtube URL or a Search Query
+ * @param data Could be Youtube URL or a Search Query
  * @async
  */
 function getAudio(query, callback) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, stream, song;
+        var data;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    console.time('Queue-Time');
                     data = query.trim();
                     if (!ytdl_core_1["default"].validateURL(data)) return [3 /*break*/, 2];
-                    return [4 /*yield*/, ytdl_core_1["default"](data, { filter: 'audioonly' })];
-                case 1:
-                    stream = _a.sent();
-                    song = { url: 'adsad', title: 'adas', thumbnail: 'adasds' };
-                    callback(null, stream, song);
-                    return [3 /*break*/, 4];
-                case 2:
-                    console.time("Queue-Time");
-                    return [4 /*yield*/, getVideoData(data, function (err, res) { return __awaiter(_this, void 0, void 0, function () {
-                            var id, stream, song;
+                    return [4 /*yield*/, ytdl_core_1["default"].getBasicInfo(data).then(function (vidData) { return __awaiter(_this, void 0, void 0, function () {
+                            var stream, song;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
-                                    case 0:
-                                        if (err)
-                                            throw err;
-                                        id = res.id.videoId;
-                                        return [4 /*yield*/, ytdl_core_1["default"]("https://www.youtube.com/watch?v=" + id, { filter: 'audioonly' })];
+                                    case 0: return [4 /*yield*/, ytdl_core_1["default"](data, { filter: 'audioonly' })];
                                     case 1:
                                         stream = _a.sent();
-                                        song = { title: res.snippet.title, url: "https://www.youtube.com/watch?v=" + id, thumbnail: res.snippet.thumbnails.high.url };
-                                        console.timeEnd("Queue-Time");
+                                        song = { url: data, title: vidData.videoDetails.title, thumbnail: vidData.videoDetails.thumbnails[0].url };
                                         callback(null, stream, song);
-                                        return [2 /*return*/];
+                                        return [2 /*return*/, console.timeEnd('Queue-Time')];
                                 }
                             });
-                        }); })["catch"](function (err) { return callback(err, null, null); })];
+                        }); })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 4];
+                case 2: return [4 /*yield*/, getVideoData(data, function (err, res) { return __awaiter(_this, void 0, void 0, function () {
+                        var id, stream, song;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    if (err)
+                                        throw err;
+                                    id = res.id.videoId;
+                                    return [4 /*yield*/, ytdl_core_1["default"]("https://www.youtube.com/watch?v=" + id, { filter: 'audioonly' })];
+                                case 1:
+                                    stream = _a.sent();
+                                    song = { title: res.snippet.title, url: "https://www.youtube.com/watch?v=" + id, thumbnail: res.snippet.thumbnails.high.url };
+                                    callback(null, stream, song);
+                                    return [2 /*return*/, console.timeEnd("Queue-Time")];
+                            }
+                        });
+                    }); })["catch"](function (err) { return callback(err, null, null); })];
                 case 3:
                     _a.sent();
                     _a.label = 4;

@@ -1,6 +1,7 @@
+import { EventEmitter } from 'events'
 import internal from 'stream';
 
-export default class AudioQueue {
+export default class AudioQueue extends EventEmitter{
     public Queue: internal.Readable[] = [];
 
     add = (data: internal.Readable) => {
@@ -8,6 +9,7 @@ export default class AudioQueue {
     }
 
     remove = (pos: number) => {
+        this.emit('remove')
         return this.Queue.splice(pos, 1)
     }
 
@@ -21,5 +23,9 @@ export default class AudioQueue {
 
     getLenght = () => {
         return this.Queue.length
+    }
+
+    clear = () => {
+        return this.Queue.splice(0, this.getLenght())
     }
 }

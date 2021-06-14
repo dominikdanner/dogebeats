@@ -41,7 +41,7 @@ exports.bot = {
         }
     },
     //Bot Token
-    BOT_TOKEN: 'ODQwMjI0NTQzMDU4NDI3OTE0.YJVGFQ.OSQu7tbSZ3IWKt7v0pGNsEIJLKg'
+    BOT_TOKEN: 'ODQwMjI0NTQzMDU4NDI3OTE0.YJVGFQ.WNuvVOGc7pMxUJGKCpceKNH1Bbg'
 };
 exports.colors = {
     red: 'eb4034'
