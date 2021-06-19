@@ -5,8 +5,6 @@
     - Node Version 15.x or greater
     - Typescript Compiler
 
-![Image](https://i.imgur.com/hEZkob5.png)
-
 ## Description
 
 A functional, fast and reliable Bot for you and your friends.
